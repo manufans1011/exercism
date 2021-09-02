@@ -23,10 +23,10 @@ defmodule SecretHandshake do
 
   @spec commands(code :: integer) :: list(String.t())
   def commands(code) do
-    action_numbers = Map.keys(@code_mapper) |> Enum.sort()
-    sec_handshake(code)
+    code_mappers = Map.keys(@code_mapper) |> Enum.sort()
+    sec_handshake(code, code_mappers [])
   end
 
-  defp sec_handshake(code) do: [@code_mapper[code]]
-  end
+  defp sec_handshake(code, [], handshake) when (0b10000 &&& code)
+  defp sec_handshake(_code, [], handshake) do: Enum.reverse(handshake)
 end
